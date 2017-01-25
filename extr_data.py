@@ -53,19 +53,28 @@ for Line in InFile:
     Per     = ElementList[7]
     Wgl     = ElementList[8]
   
-    #LabelString = (Taxon+'_'+Origin+'_'+Voucher+'_'+COI+'_'+CAD+'_'+DDC+'_'+EF1a+'_'+Per+'_'+Wgl+',')
-    LabelString = ('"'+Taxon+'_'+Origin+'_'+Voucher+'_'+COI+'_'+CAD+'_'+DDC+'_'+EF1a+'_'+Per+'_'+Wgl+'"'+',')
-    SubFind3 = r"\n"
-    SubReplace3 = r""
-    LabelString = re.sub(SubFind3, SubReplace3, LabelString)
-    OutFile.write(LabelString)
     
-    COI_Acc.write('"'+COI+'"'+',')
-    CAD_Acc.write('"'+CAD+'"'+',')
-    DDC_Acc.write('"'+DDC+'"'+',')
-    EF1a_Acc.write('"'+EF1a+'"'+',')
-    Per_Acc.write('"'+Per+'"'+',')
-    Wgl_Acc.write('"'+Wgl+'"'+',')
+    
+    
+    if LineNumber == 1:
+      LabelString = ('"'+Taxon+'_'+Origin+'_'+Voucher+'_'+COI+'_'+CAD+'_'+DDC+'_'+EF1a+'_'+Per+'_'+Wgl+'"')
+      OutFile.write(LabelString)
+      COI_Acc.write('"'+COI+'"')
+      CAD_Acc.write('"'+CAD+'"')
+      DDC_Acc.write('"'+DDC+'"')
+      EF1a_Acc.write('"'+EF1a+'"')
+      Per_Acc.write('"'+Per+'"')
+      Wgl_Acc.write('"'+Wgl+'"')
+    else:
+      LabelString = (',\n'+'"'+Taxon+'_'+Origin+'_'+Voucher+'_'+COI+'_'+CAD+'_'+DDC+'_'+EF1a+'_'+Per+'_'+Wgl+'"')      
+      OutFile.write (LabelString)
+      COI_Acc.write (',\n'+'"'+COI+'"')
+      CAD_Acc.write (',\n'+'"'+CAD+'"')
+      DDC_Acc.write (',\n'+'"'+DDC+'"')
+      EF1a_Acc.write(',\n'+'"'+EF1a+'"')
+      Per_Acc.write (',\n'+'"'+Per+'"')
+      Wgl_Acc.write (',\n'+'"'+Wgl+'"')
+    
     
   LineNumber +=1
 
