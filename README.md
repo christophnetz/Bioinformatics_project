@@ -34,7 +34,7 @@ Input: Sphinginae_CSV.csv
 after adding masterscript.sh, extr_data.py and R_seqimport.r and making them executable,
 run masterscript.sh from the working directory containing the csv File.
 It should successfully generate 6 phylip alignment files for each of the sequences in the csv file,
-like the ones to be found in the example files folder
+like the ones to be found in the example_files/output folder. Also the resulting, ,manually produced phylogenies are supplied.
 
 The ML calculation does not yet work due to the overlength of sequence names. 
 Producing the alignments, however, is the more important step as it reduces the manual workload considerably. 
