@@ -1,65 +1,27 @@
-#! /usr/bin/env R
+#! /usr/bin/env Rscript
 
 
-#! /usr/bin/env R
+#Load library for seq import
+library(ape) 
 
-library(ape)
+#specify sequences that shall be imported
+seqtype = c("COI", "CAD", "DDC", "EF1a", "Per", "Wgl")
 
+#loop over vector with desired sequences
+for (i in seqtype){
+  print (i)  #print sequence
 
+  #Load character vector containing accession numbers
+  Acc <- scan(paste0("32", i, "_Acc.txt"), what="character",sep=",")
+  
+  #Load character vector containing labels (same order as acc. num!)
+  labels <- scan(paste0("3", i, "_labels.txt"), what="character",sep=",")
+  
+  #import GenBank sequences Acc with labels 'labels' to object seq_data
+  seq_data <- read.GenBank(Acc, seq.names = labels)
+  
+  #write object to fasta file
+  write.dna(seq_data, file =paste0(i, ".fasta"), format = "fasta", append =
+              FALSE, nbcol = 6, colsep = " ", colw = 10)
+}
 
-Acc <- scan("3COI_Acc.txt", what="character",sep=",")
-labels <- scan("COI_labels2.txt", what="character",sep=",")
-
-seq_data <- read.GenBank(Acc, seq.names = labels)
-
-
-write.dna(seq_data, file ="COI.fasta", format = "fasta", append =
-            FALSE, nbcol = 6, colsep = " ", colw = 10)
-###########################
-
-Acc <- scan("3CAD_Acc.txt", what="character",sep=",")
-labels <- scan("CAD_labels2.txt", what="character",sep=",")
-
-seq_data <- read.GenBank(Acc, seq.names = labels)
-
-
-write.dna(seq_data, file ="CAD.fasta", format = "fasta", append =
-            FALSE, nbcol = 6, colsep = " ", colw = 10)
-######################################
-Acc <- scan("3DDC_Acc.txt", what="character",sep=",")
-labels <- scan("DDC_labels2.txt", what="character",sep=",")
-
-seq_data <- read.GenBank(Acc, seq.names = labels)
-
-
-write.dna(seq_data, file ="DDC.fasta", format = "fasta", append =
-            FALSE, nbcol = 6, colsep = " ", colw = 10)
-
-###################################
-Acc <- scan("3EF1a_Acc.txt", what="character",sep=",")
-labels <- scan("EF1a_labels2.txt", what="character",sep=",")
-
-seq_data <- read.GenBank(Acc, seq.names = labels)
-
-
-write.dna(seq_data, file ="EF1a.fasta", format = "fasta", append =
-            FALSE, nbcol = 6, colsep = " ", colw = 10)
-#############################
-Acc <- scan("3Per_Acc.txt", what="character",sep=",")
-labels <- scan("Per_labels2.txt", what="character",sep=",")
-
-seq_data <- read.GenBank(Acc, seq.names = labels)
-
-
-write.dna(seq_data, file ="Per.fasta", format = "fasta", append =
-            FALSE, nbcol = 6, colsep = " ", colw = 10)
-###############################
-
-Acc <- scan("3Wgl_Acc.txt", what="character",sep=",")
-labels <- scan("Wgl_labels2.txt", what="character",sep=",")
-
-seq_data <- read.GenBank(Acc, seq.names = labels)
-
-
-write.dna(seq_data, file ="Wgl.fasta", format = "fasta", append =
-            FALSE, nbcol = 6, colsep = " ", colw = 10)
